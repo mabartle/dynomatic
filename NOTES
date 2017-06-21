@@ -1,0 +1,23 @@
+Start with starting local DynamoDB: 
+ java -Djava.library.path=./DynamoDBLocal_lib/ -jar DynamoDBLocal.jar -sharedDb -inMemory
+
+
+config file needs to be created and updated (even if using local): 
+aws configure
+
+(look in aws console and generate a new key/private/etc)
+config file is stored ~/.aws/config
+
+command to query for table list in DynamoDB local: 
+
+aws dynamodb list-tables --endpoint-url http://localhost:8000
+
+
+In the directory it was installed: (/opt/DYNAMO)
+starting local instance: 
+aws dynamodb list-tables --endpoint-url http://localhost:8000
+
+Creating a table through CLI: 
+aws dynamodb create-table --table-name MarkTest --attribute-definitions AttributeName=Artist,AttributeType=S AttributeName=SongTitle,AttributeType=S --key-schema AttributeName=Artist,KeyType=HASH AttributeName=SongTitle,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --endpoint-url http://localhost:8000
+
+
